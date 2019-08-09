@@ -1,6 +1,8 @@
 package com.example.c0754427_mad3125_midterm;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -22,9 +24,13 @@ import java.util.regex.Pattern;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+
+
+//-----------------LINKS------------------
 //https://www.loopwiki.com/beginner/android-login-register-sqlite-database-tutorial/
 ////http://www.androidtutorialshub.com/android-login-and-register-with-sqlite-database-tutorial/
 //http://coderzpassion.com/android-simple-login-example-using-sqlite/
+//https://stackoverflow.com/questions/27411639/login-user-if-values-exist-in-hashmap
 
 
 
@@ -33,6 +39,68 @@ import butterknife.ButterKnife;
 
 
 public class LoginActivity extends AppCompatActivity {
+
+    Button btnLogin;
+    EditText edtEmail,edtPass;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+
+        btnLogin = findViewById(R.id.buttonLogin);
+        edtEmail = findViewById(R.id.edtEmail);
+        edtPass = findViewById(R.id.edtpassword);
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                if(edtEmail.getText().toString().trim().length() == 0){
+                    edtEmail.setError("Enter a valid Email");
+                    showDialogBox();
+                }
+                else if(edtPass.getText().toString().trim().length() == 0){
+                    edtPass.setError("Enter Password");
+                }
+
+                if(edtEmail.getText().toString().equals("admin@gmail.com") && edtPass.getText().toString().equals("admin123")){
+                    startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                    finish();
+                }
+                else
+                {
+
+
+
+                }
+
+
+
+            }
+        });
+    }
+
+    private void showDialogBox() {
+
+        AlertDialog alertDialog = new AlertDialog.Builder(LoginActivity.this)
+                .setTitle("Invalid")
+                .setMessage("Please enter valid details")
+
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).show();
+
+
+    }
+
+}
+
+
+/*public class LoginActivity extends AppCompatActivity {
 
 
     Map<String, String> usersMapList = new HashMap<>();
@@ -158,4 +226,4 @@ public class LoginActivity extends AppCompatActivity {
             usersMapList.put(u.getEmail(), u.getPassword());
         }
     }
-}
+}*/

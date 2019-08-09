@@ -16,6 +16,7 @@ import java.util.List;
 
 //https://www.javatpoint.com/android-recyclerview-list-example
 //github recycler_view example code
+//https://moodle.cestarcollege.com/moodle/mod/folder/view.php?id=409440dDAY6
 
 
 
@@ -27,7 +28,6 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.MyViewHold
 {
     public List<Row> RowsList;
     ImageView flightImage;
-
     TextView flightName,flightYear;
 
     private static final String TAG = "FlightAdapter";

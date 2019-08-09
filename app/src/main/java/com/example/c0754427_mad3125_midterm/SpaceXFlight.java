@@ -6,10 +6,11 @@ public class SpaceXFlight {
     String upcoming;
     String launch_year;
     String launch_window;
+    String details;
     Rocket rocket;
     LaunchSite launchSite;
     Links links;
-    String details;
+
 
 
 
