@@ -7,23 +7,6 @@
     android:background="@drawable/spacex"
     tools:context=".Splash">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="138dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="165dp"
-        android:layout_marginLeft="165dp"
-        android:layout_marginTop="296dp"
-        android:layout_marginEnd="108dp"
-        android:layout_marginRight="108dp"
-        android:layout_marginBottom="406dp"
-        android:text="KARAN SINGH KUNDAN" />
 
     <TextView
         android:id="@+id/textView2"
@@ -39,5 +22,7 @@
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
         android:layout_marginBottom="468dp"
-        android:text="C0754427" />
+        android:text="C0754427
+        KARAN SINGH KUNDAN"
+        android:textColor="#E02222" />
 </RelativeLayout>
