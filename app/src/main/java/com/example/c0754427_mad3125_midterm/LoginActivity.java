@@ -1,12 +1,16 @@
 package com.example.c0754427_mad3125_midterm;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,21 +21,22 @@ import java.util.regex.Pattern;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class LoginActivity {
+public class LoginActivity extends AppCompatActivity {
 
-    @BindView()(R.id.edtEmail)
-    TextInputEditText edtEmail;
-    @BindView(R.id.edtPassword)
-    TextInputEditText edtPassword;
-    @BindView(R.id.btnLogin)
-    Button btnLogin;
-    @BindView(R.id.switchRememberMe)
-    Switch switchRememberMe;
 
-    Map<String,String > usersMapList = new HashMap<>();
+    Map<String, String> usersMapList = new HashMap<>();
     SharedPreferences mSharedpreferences;
     SharedPreferences.Editor mEditor;
     ArrayList<User> mUsersArrayList;
+
+    @BindView(R.id.buttonLogin)
+    Button buttonLogin;
+    @BindView(R.id.switchRememberMe)
+    Switch switchRememberMe;
+    @BindView(R.id.edtEmail)
+    EditText edtEmail;
+    @BindView(R.id.edtpassword)
+    EditText edtpassword;
     private DBUser mDBUser;
 
     @Override
@@ -39,17 +44,13 @@ public class LoginActivity {
 
         mDBUser = new DBUser(this);
         mUsersArrayList = mDBUser.getAllUsers();
-        if (((ArrayList) mUsersArrayList).isEmpty())
-        {
+        if ( mUsersArrayList.isEmpty()) {
             loadUserIntoDB();
-            Log.d("USER ----->>>>","Users have been Loaded");
+            Log.d("USER ----->>>>", "Users have been Loaded");
 
-        }
-        else
-        {
-            Log.d("Total Users -->>>>>>",String.valueOf(mUsersArrayList.size()));
-            for(User u : mUsersArrayList)
-            {
+        } else {
+            Log.d("Total Users -->>>>>>", String.valueOf(mUsersArrayList.size()));
+            for (User u : mUsersArrayList) {
                 Log.d("USER", u.toString());
             }
         }
@@ -61,61 +62,43 @@ public class LoginActivity {
         convertListToMap();
         //usersMapList.put("admin@admin.com","admin"); // key , value
         //usersMapList.put("test@test.com","test");
-        if(switchRememberMe.isChecked() == true)
-        {
+        if (switchRememberMe.isChecked() == true) {
             getRememberMe();
         }
 
-        btnLogin.setOnClickListener(new  View.OnClickListener()  {
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 String email = edtEmail.getText().toString();
-                String password = edtPassword.getText().toString();
-                if(edtEmail.getText().toString().isEmpty() || edtEmail.getText().toString().trim().length() == 0)
-                {
+                String password = edtpassword.getText().toString();
+                if (edtEmail.getText().toString().isEmpty() || edtEmail.getText().toString().trim().length() == 0) {
                     edtEmail.setError("Enter Email : ");
-                    if(edtPassword.getText().toString().isEmpty() || edtPassword.getText().toString().trim().length() == 0)
-                    {
-                        edtPassword.setError("Enter Password : ");
+                    if (edtpassword.getText().toString().isEmpty() || edtpassword.getText().toString().trim().length() == 0) {
+                        edtpassword.setError("Enter Password : ");
                     }
-                }
-                else
-                {
-                    if(validateEmail(email))
-                    {
-                        if (usersMapList.containsKey(email))
-                        {
+                } else {
+                    if (validateEmail(email)) {
+                        if (usersMapList.containsKey(email)) {
                             //Valid email of user
-                            if (usersMapList.containsValue(password))
-                            {
+                            if (usersMapList.containsValue(password)) {
                                 //password matches so User confirmed
                                 Toast.makeText(LoginActivity.this, "Correct Details Entered", Toast.LENGTH_SHORT).show();
-                                if(switchRememberMe.isChecked() == true)
-                                {
+                                if (switchRememberMe.isChecked() == true) {
                                     saveRememeberMe();
-                                }
-                                else
-                                {
+                                } else {
                                     saveRememeberMeEmpty();
                                 }
 
-                            }
-                            else
-                            {
+                            } else {
                                 //Password is incorrect
-                                edtPassword.setError("Password is Incorrect");
+                                edtpassword.setError("Password is Incorrect");
 
                             }
-                        }
-                        else
-                        {
+                        } else {
                             //No User with this Email in DataBase
                             edtEmail.setError("No User with this Email in DataBase");
                         }
-                    }
-                    else
-                    {
+                    } else {
                         edtEmail.setError("Not Valid Email Address");
                     }
                 }
@@ -123,33 +106,31 @@ public class LoginActivity {
         });
 
 
-
     }
 
-    private void saveRememeberMe()
-    {
+    private void saveRememeberMe() {
         mSharedpreferences = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
         mEditor = mSharedpreferences.edit();
         mEditor.putString("email", edtEmail.getText().toString());
-        mEditor.putString("password",edtPassword.getText().toString());
+        mEditor.putString("password", edtpassword.getText().toString());
         mEditor.commit();
     }
-    private void saveRememeberMeEmpty()
-    {
+
+    private void saveRememeberMeEmpty() {
         mSharedpreferences = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
         mEditor = mSharedpreferences.edit();
         mEditor.putString("email", "");
-        mEditor.putString("password","");
+        mEditor.putString("password", "");
         mEditor.commit();
     }
-    private void getRememberMe()
-    {
+
+    private void getRememberMe() {
         mSharedpreferences = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
         mEditor = mSharedpreferences.edit();
         String email = mSharedpreferences.getString("email", "");
-        String password = mSharedpreferences.getString("password","");
+        String password = mSharedpreferences.getString("password", "");
         edtEmail.setText(email);
-        edtPassword.setText(password);
+        edtpassword.setText(password);
     }
 
     public Boolean validateEmail(String email) {
@@ -157,34 +138,29 @@ public class LoginActivity {
         String regex = "^[a-z0-9A-Z\\.]*@[a-z0-9A-Z]*\\.[a-zA-Z]*$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
-        if(matcher.matches())
-        {
+        if (matcher.matches()) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
-    public void loadUserIntoDB()
-    {
-        User user1 = new User(1,"admin@admin.com","admin");
+
+    public void loadUserIntoDB() {
+        User user1 = new User(1, "admin@gmail.com", "admin123");
         mDBUser.insert(user1);
-        User user2 = new User(2,"test@test.com","test");
+        User user2 = new User(2, "test@test.com", "test");
         mDBUser.insert(user2);
-        User user3 = new User(3,"tar@tar.com","tar");
+        User user3 = new User(3, "tar@tar.com", "tar");
         mDBUser.insert(user3);
-        User user4 = new User(4,"abc@abc.com","abc");
+        User user4 = new User(4, "abc@abc.com", "abc");
         mDBUser.insert(user4);
-        User user5 = new User(5,"xyz@xyz.com","xyz");
+        User user5 = new User(5, "xyz@xyz.com", "xyz");
         mDBUser.insert(user5);
     }
 
-    private void convertListToMap()
-    {
-        for(User u : mUsersArrayList)
-        {
-            usersMapList.put(u.getEmail(),u.getPassword());
+    private void convertListToMap() {
+        for (User u : mUsersArrayList) {
+            usersMapList.put(u.getEmail(), u.getPassword());
         }
     }
 }
