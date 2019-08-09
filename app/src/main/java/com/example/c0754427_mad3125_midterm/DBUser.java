@@ -6,12 +6,22 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
+
+
+//http://www.androidtutorialshub.com/android-login-and-register-with-sqlite-database-tutorial/
+//https://www.loopwiki.com/beginner/android-login-register-sqlite-database-tutorial/
+//http://coderzpassion.com/android-simple-login-example-using-sqlite/
+//https://www.youtube.com/watch?v=mPhqDzO7PUU
+
+
+
+
 public class DBUser
 {
-    public static final String TABLE_NAME = "tblUser";
-    public static final String USER_ID = "uid";
-    public static final String USER_EMAIL = "uemail";
-    public static final String USER_PASSWORD = "upass";
+    public static  String TABLE_NAME = "tblUser";
+    public static  String USER_ID = "uid";
+    public static  String USER_EMAIL = "uemail";
+    public static  String USER_PASSWORD = "upass";
     private DBHelper dbHelper;
     public DBUser(Context context)
     {

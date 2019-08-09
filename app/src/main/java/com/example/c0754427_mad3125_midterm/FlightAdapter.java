@@ -1,20 +1,27 @@
 package com.example.c0754427_mad3125_midterm;
 
 
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
-
 import java.util.List;
+
+//https://www.javatpoint.com/android-recyclerview-list-example
+//github recycler_view example code
+
+
+
+
+
+
 
 public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.MyViewHolder>
 {
@@ -52,13 +59,14 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.MyViewHold
         String photoUrl = MainActivity.staticSpaceXFlightList.get(i).getLinks().getMission_patch();
         Glide.with(myViewHolder.flightImage)  //2
                 .load(photoUrl) //3
-//                .centerCrop() //4
-//                .placeholder(R.drawable.ic_launcher_background) //5
-//                .error(R.drawable.ic_launcher_background) //6
-//                .fallback(R.drawable.ic_launcher_background) //7
+                .centerCrop() //4
+                .placeholder(R.drawable.ic_launcher_background) //5
+                .error(R.drawable.ic_launcher_background) //6
+                .fallback(R.drawable.ic_launcher_background) //7
                 .into(myViewHolder.flightImage);
-        //myViewHolder.flightImage.setImageResource(mFlightRow.getImageId());
-        //icon.setImageResource(context.getResources().getIdentifier(animal.getAnimalName().toLowerCase(),"drawable",context.getPackageName()));
+        myViewHolder.flightImage.setImageResource(mFlightRow.getimageId());
+        Context context;
+
         myViewHolder.flightName.setText(mFlightRow.getFlightName());
         myViewHolder.flightYear.setText(mFlightRow.getFlightYear());
     }
