@@ -49,7 +49,6 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.edtpassword)
     EditText edtpassword;
     private DBUser mDBUser;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -63,18 +62,13 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d("USER", u.toString());
             }
         }
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         convertListToMap();
-        //usersMapList.put("admin@admin.com","admin"); // key , value
-        //usersMapList.put("test@test.com","test");
         if (switchRememberMe.isChecked() == true) {
             getRememberMe();
         }
-
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,7 +109,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
-
     private void saveRememeberMe() {
         mSharedpreferences = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
         mEditor = mSharedpreferences.edit();
@@ -123,7 +116,6 @@ public class LoginActivity extends AppCompatActivity {
         mEditor.putString("password", edtpassword.getText().toString());
         mEditor.commit();
     }
-
     private void saveRememeberMeEmpty() {
         mSharedpreferences = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
         mEditor = mSharedpreferences.edit();
@@ -131,7 +123,6 @@ public class LoginActivity extends AppCompatActivity {
         mEditor.putString("password", "");
         mEditor.commit();
     }
-
     private void getRememberMe() {
         mSharedpreferences = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
         mEditor = mSharedpreferences.edit();
@@ -140,9 +131,7 @@ public class LoginActivity extends AppCompatActivity {
         edtEmail.setText(email);
         edtpassword.setText(password);
     }
-
     public Boolean validateEmail(String email) {
-
         String regex = "^[a-z0-9A-Z\\.]*@[a-z0-9A-Z]*\\.[a-zA-Z]*$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
@@ -152,20 +141,18 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         }
     }
-
     public void loadUserIntoDB() {
-        User user1 = new User(1, "admin@gmail.com", "admin123");
+        User user1 = new User(1, "karangmail.com", "karan123");
         mDBUser.insert(user1);
-        User user2 = new User(2, "test@test.com", "test");
+        User user2 = new User(2, "naina@gmail.com", "naina123");
         mDBUser.insert(user2);
-        User user3 = new User(3, "tar@tar.com", "tar");
+        User user3 = new User(3, "jazz@gmail.com.com", "jazz123");
         mDBUser.insert(user3);
-        User user4 = new User(4, "abc@abc.com", "abc");
+        User user4 = new User(4, "kishore@gmail.com", "kishore123");
         mDBUser.insert(user4);
-        User user5 = new User(5, "xyz@xyz.com", "xyz");
+        User user5 = new User(5, "shivani@gmail.com", "shivani123");
         mDBUser.insert(user5);
     }
-
     private void convertListToMap() {
         for (User u : mUsersArrayList) {
             usersMapList.put(u.getEmail(), u.getPassword());
