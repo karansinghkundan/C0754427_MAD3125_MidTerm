@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private FlightAdapter mAdapter;
     ImageView imageView;
     DataStore mDataStore;
+    Button mButton;
     private List<Row> flightRowList = new ArrayList<>();
     public static ArrayList<SpaceXFlight> staticSpaceXFlightList;
     @Override
@@ -52,4 +54,5 @@ public class MainActivity extends AppCompatActivity {
         }
         mAdapter.notifyDataSetChanged();
     }
+
 }
