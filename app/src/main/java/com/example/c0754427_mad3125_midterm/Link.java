@@ -7,6 +7,10 @@ public class Link {
     String article_link;
     String wikipedia;
 
+    public Link() {
+
+    }
+
     public String getMission_patch() {
         return mission_patch;
     }

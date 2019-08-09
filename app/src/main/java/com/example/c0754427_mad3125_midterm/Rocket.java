@@ -12,6 +12,10 @@ public class Rocket {
         this.rocket_type = rocket_type;
     }
 
+    public Rocket() {
+
+    }
+
     public String getRocket_id() {
         return rocket_id;
     }

@@ -5,6 +5,10 @@ public class Site {
     String site_name;
     String site_name_long;
 
+    public Site() {
+
+    }
+
 
     public String getSite_id() {
         return site_id;

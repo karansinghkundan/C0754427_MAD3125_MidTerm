@@ -20,6 +20,10 @@ public class Flight {
         this.link = link;
     }
 
+    public Flight() {
+
+    }
+
     public String getFlight_number() {
         return flight_number;
     }
