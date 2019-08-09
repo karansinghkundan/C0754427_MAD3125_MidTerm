@@ -61,4 +61,12 @@
         tools:ignore="UnknownId"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="10dp" />
+
+    <Button
+        android:id="@+id/Logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="317dp"
+        tools:layout_editor_absoluteY="2dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
