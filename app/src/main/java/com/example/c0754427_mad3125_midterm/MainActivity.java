@@ -11,9 +11,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DataSource mDataSource = new DataSource(MainActivity.this);
+        DataStore mDataSource = new DataStore(MainActivity.this);
         mDataSource.processJSON();
-        Log.d("Size of List : ",String.valueOf(mDataSource.mFlightList.size()));
+        Log.d("Size of List : ---->",String.valueOf(mDataSource.mSpaceXFlightList.size()));
+
 
     }
 }

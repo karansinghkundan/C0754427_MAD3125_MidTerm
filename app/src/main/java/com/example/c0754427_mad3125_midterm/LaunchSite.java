@@ -1,14 +1,20 @@
 package com.example.c0754427_mad3125_midterm;
 
-public class Site {
+public class LaunchSite {
+
     String site_id;
     String site_name;
     String site_name_long;
 
-    public Site() {
-
+    public LaunchSite(String site_id, String site_name, String site_name_long) {
+        this.site_id = site_id;
+        this.site_name = site_name;
+        this.site_name_long = site_name_long;
     }
 
+    public LaunchSite() {
+
+    }
 
     public String getSite_id() {
         return site_id;
@@ -34,21 +40,12 @@ public class Site {
         this.site_name_long = site_name_long;
     }
 
-
-    public Site(String site_id, String site_name, String site_name_long) {
-        this.site_id = site_id;
-        this.site_name = site_name;
-        this.site_name_long = site_name_long;
-    }
-
-
     @Override
     public String toString() {
-        return "Site{" +
+        return "LaunchSite{" +
                 "site_id='" + site_id + '\'' +
                 ", site_name='" + site_name + '\'' +
                 ", site_name_long='" + site_name_long + '\'' +
                 '}';
     }
 }
-
