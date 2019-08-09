@@ -64,8 +64,6 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.MyViewHold
                 .error(R.drawable.ic_launcher_background) //6
                 .fallback(R.drawable.ic_launcher_background) //7
                 .into(myViewHolder.flightImage);
-        myViewHolder.flightImage.setImageResource(mFlightRow.getimageId());
-        Context context;
 
         myViewHolder.flightName.setText(mFlightRow.getFlightName());
         myViewHolder.flightYear.setText(mFlightRow.getFlightYear());
