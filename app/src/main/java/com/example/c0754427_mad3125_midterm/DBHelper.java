@@ -5,7 +5,20 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-    public class DBHelper extends SQLiteOpenHelper
+
+
+//http://www.androidtutorialshub.com/android-login-and-register-with-sqlite-database-tutorial/
+//https://www.loopwiki.com/beginner/android-login-register-sqlite-database-tutorial/
+//http://coderzpassion.com/android-simple-login-example-using-sqlite/
+
+
+
+
+
+
+
+
+    public class    DBHelper extends SQLiteOpenHelper
     {
         private static final String DB_NAME = "dbUser";
         private static final int DB_VERSION = 1;

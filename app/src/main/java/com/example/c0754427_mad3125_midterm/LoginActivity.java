@@ -1,6 +1,7 @@
 package com.example.c0754427_mad3125_midterm;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,16 @@ import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+//https://www.loopwiki.com/beginner/android-login-register-sqlite-database-tutorial/
+////http://www.androidtutorialshub.com/android-login-and-register-with-sqlite-database-tutorial/
+//http://coderzpassion.com/android-simple-login-example-using-sqlite/
+
+
+
+
+
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -46,10 +57,8 @@ public class LoginActivity extends AppCompatActivity {
         mUsersArrayList = mDBUser.getAllUsers();
         if ( mUsersArrayList.isEmpty()) {
             loadUserIntoDB();
-            Log.d("USER ----->>>>", "Users have been Loaded");
 
         } else {
-            Log.d("Total Users -->>>>>>", String.valueOf(mUsersArrayList.size()));
             for (User u : mUsersArrayList) {
                 Log.d("USER", u.toString());
             }
@@ -72,17 +81,16 @@ public class LoginActivity extends AppCompatActivity {
                 String email = edtEmail.getText().toString();
                 String password = edtpassword.getText().toString();
                 if (edtEmail.getText().toString().isEmpty() || edtEmail.getText().toString().trim().length() == 0) {
-                    edtEmail.setError("Enter Email : ");
+                    edtEmail.setError("Enter vali email : ");
                     if (edtpassword.getText().toString().isEmpty() || edtpassword.getText().toString().trim().length() == 0) {
-                        edtpassword.setError("Enter Password : ");
+                        edtpassword.setError("Enter valid password: ");
                     }
                 } else {
                     if (validateEmail(email)) {
                         if (usersMapList.containsKey(email)) {
-                            //Valid email of user
                             if (usersMapList.containsValue(password)) {
-                                //password matches so User confirmed
                                 Toast.makeText(LoginActivity.this, "Correct Details Entered", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(LoginActivity.this,MainActivity.class));
                                 if (switchRememberMe.isChecked() == true) {
                                     saveRememeberMe();
                                 } else {
@@ -96,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         } else {
                             //No User with this Email in DataBase
-                            edtEmail.setError("No User with this Email in DataBase");
+                            edtEmail.setError("Incorrect details");
                         }
                     } else {
                         edtEmail.setError("Not Valid Email Address");
