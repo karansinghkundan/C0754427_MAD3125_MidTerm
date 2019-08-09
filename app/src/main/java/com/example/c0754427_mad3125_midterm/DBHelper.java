@@ -19,7 +19,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 
 
-    public class    DBHelper extends SQLiteOpenHelper
+    public class   DBHelper extends SQLiteOpenHelper
     {
         private static final String DB_NAME = "dbUser";
         private static final int DB_VERSION = 1;
