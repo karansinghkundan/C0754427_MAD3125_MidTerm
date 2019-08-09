@@ -57,12 +57,12 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.MyViewHold
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
         Row mFlightRow = RowsList.get(i);
         String photoUrl = MainActivity.staticSpaceXFlightList.get(i).getLinks().getMission_patch();
-        Glide.with(myViewHolder.flightImage)  //2
-                .load(photoUrl) //3
-                .centerCrop() //4
-                .placeholder(R.drawable.ic_launcher_background) //5
-                .error(R.drawable.ic_launcher_background) //6
-                .fallback(R.drawable.ic_launcher_background) //7
+        Glide.with(myViewHolder.flightImage)
+                .load(photoUrl)
+                .centerCrop()
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_background)
+                .fallback(R.drawable.ic_launcher_background)
                 .into(myViewHolder.flightImage);
 
         myViewHolder.flightName.setText(mFlightRow.getFlightName());
